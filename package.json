@@ -1,0 +1,23 @@
+{
+    "name": "DrinkingBuddy",
+    "version": "1.0.0",
+    "main": "src/index.html",
+    "author": "Jonathan Adami",
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/core": "^7.12.10",
+        "@babel/plugin-proposal-class-properties": "^7.12.1",
+        "@babel/preset-env": "^7.12.1",
+        "@babel/preset-react": "^7.12.10",
+        "parcel": "2.0.0-beta.1"
+    },
+    "dependencies": {
+        "@material-ui/core": "^4.11.2",
+        "luxon": "^1.25.0",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1"
+    },
+    "scripts": {
+        "dev": "parcel src/index.html"
+    }
+}
