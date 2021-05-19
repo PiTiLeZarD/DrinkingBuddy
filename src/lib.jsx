@@ -1,4 +1,4 @@
-import { DateTime } from "luxon";
+import { parse } from "algebra.js";
 
 const VOL2WEIGHT = 1.267;
 const ABSORPTION_RATE = 0.5;
@@ -65,13 +65,18 @@ export class Drink {
     }
 
     getAlcoholContentForDate(person, date) {
+        /* linear first f(x) = alc - t * ELIMINATION_RATE */
+        const { seconds } = date.diff(this.start_date, ["seconds"]).toObject();
+        return parse("y = a - a * r * t")
+            .eval({ t: seconds, a: parse(this.alcohol.content.toString()), r: parse("1/7200") })
+            .solveFor("y")
+            .valueOf();
+
         /* https://www.intmath.com/blog/mathematics/math-of-drugs-and-bodies-pharmacokinetics-4098 */
         // 1/V(AFDe(-At) - EVC)
 
         /* https://en.wikipedia.org/wiki/Alcohol_(drug)#:~:text=The%20oral%20bioavailability%20of%20ethanol,the%20dose%20of%20ethanol%20administered. */
         /* https://www.researchgate.net/publication/333219749_Alcohol_its_absorption_distribution_metabolism_and_excretion_in_the_body_and_pharmacokinetic_calculations */
-
-        return Math.random() * 10;
     }
 }
 

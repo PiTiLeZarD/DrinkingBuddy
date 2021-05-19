@@ -21,9 +21,10 @@ const App = (props) => {
 
     const start_date = DateTime.local();
     const drink = new Drink(start_date, 60 * 30, alcohol2);
-    const alcohol_data = new Array(61)
+    const alcohol_data = new Array(181)
         .fill()
         .map((_, m) => drink.getAlcoholContentForDate(person, start_date.plus({ minutes: m })));
+    const max_alcohol = Math.max(...alcohol_data);
 
     return (
         <Grid container spacing={4}>
@@ -120,7 +121,11 @@ const App = (props) => {
                                 {i % 5 === 0 && <span>{i}mn</span>}
                             </Grid>
                             <Grid item xs={11}>
-                                <LinearProgress variant="determinate" value={v * 10} style={{ height: "1em" }} />
+                                <LinearProgress
+                                    variant="determinate"
+                                    value={(v / max_alcohol) * 100}
+                                    style={{ height: "1em" }}
+                                />
                             </Grid>
                         </Grid>
                     ))}

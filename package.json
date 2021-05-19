@@ -13,6 +13,7 @@
     },
     "dependencies": {
         "@material-ui/core": "^4.11.4",
+        "algebra.js": "^0.2.6",
         "luxon": "^1.27.0",
         "react": "^17.0.2",
         "react-dom": "^17.0.2"
